@@ -10,15 +10,19 @@ public class TakeTheGun : MonoBehaviour
     {
         //var sprite = Resources.Load<Sprite>("Sprites/New Sprite");
         //pistolSprite = sprite; 
-      //  pistolSprite = Resources.Load<Sprite>("Наброски2_2");
+        //  pistolSprite = Resources.Load<Sprite>("Наброски2_2");
     }
     int i = 0;
-    private void OnTriggerEnter2D(Collider2D shit)
+    private void OnTriggerStay2D(Collider2D shit)
     {
         if (shit.gameObject.tag == ("PistolGun"))
         {
-            shit.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().sprite = pistolSprite;
+            // shit.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Destroy(shit.gameObject);
+                GetComponent<SpriteRenderer>().sprite = pistolSprite;
+            }
         }
     }
 }
