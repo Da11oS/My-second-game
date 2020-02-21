@@ -24,8 +24,7 @@ public class PlayerMove : MonoBehaviour
       
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         RB.velocity = Run();
         transform.rotation = Turn();
