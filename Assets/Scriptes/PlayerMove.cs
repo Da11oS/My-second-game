@@ -8,15 +8,20 @@ public class PlayerMove : MonoBehaviour
     private Joystick moveJoystick,turnJoystick;
     private GameObject playerLegs;
     private Rigidbody2D RB;
-    float angle;
-    
-    void Start()
+    private float angle;
+
+    private void Awake()
     {
         moveJoystick = GameObject.Find("Fixed Joystick(Move)").GetComponent<Joystick>();
         turnJoystick = GameObject.Find("Fixed Joystick(Turn)").GetComponent<Joystick>();
         playerLegs = GameObject.Find("Legs");
+    }
+    void Start()
+    {
+    
         RB = playerLegs.GetComponent<Rigidbody2D>();
         angle = Mathf.Atan2(turnJoystick.Horizontal, turnJoystick.Vertical) * Mathf.Rad2Deg;
+      
     }
 
     // Update is called once per frame
@@ -32,11 +37,11 @@ public class PlayerMove : MonoBehaviour
     }
     private Quaternion Turn()
     {
-        if (turnJoystick.Horizontal != 0 && turnJoystick.Vertical != 0)
+        if (turnJoystick.Horizontal != 0 && turnJoystick.Vertical != 0 )
         {
             angle = Mathf.Atan2(turnJoystick.Horizontal, -turnJoystick.Vertical) * Mathf.Rad2Deg;
         }
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Quaternion rotation = Quaternion.AngleAxis(angle , Vector3.forward);
         return Quaternion.Slerp(transform.rotation, rotation, 5 * Time.deltaTime);
     }
 }
