@@ -5,42 +5,43 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Joystick moveJoystick,turnJoystick;
-    private GameObject playerLegs;
-    private Rigidbody2D RB;
-    private float angle;
+    private Joystick _moveJoystick;
+    private Joystick _turnJoystick;
+    private GameObject _playerLegs;
+    private Rigidbody2D _playerPhisyc;
+    private float _angle;
 
     private void Awake()
     {
-        moveJoystick = GameObject.Find("Fixed Joystick(Move)").GetComponent<Joystick>();
-        turnJoystick = GameObject.Find("Fixed Joystick(Turn)").GetComponent<Joystick>();
-        playerLegs = GameObject.Find("Legs");
+        _moveJoystick = GameObject.Find("Fixed Joystick(Move)").GetComponent<Joystick>();
+        _turnJoystick = GameObject.Find("Fixed Joystick(Turn)").GetComponent<Joystick>();
+        _playerLegs = GameObject.Find("Legs");
     }
     void Start()
     {
     
-        RB = playerLegs.GetComponent<Rigidbody2D>();
-        angle = Mathf.Atan2(turnJoystick.Horizontal, turnJoystick.Vertical) * Mathf.Rad2Deg;
+        _playerPhisyc = _playerLegs.GetComponent<Rigidbody2D>();
+        _angle = Mathf.Atan2(_turnJoystick.Horizontal, _turnJoystick.Vertical) * Mathf.Rad2Deg;
       
     }
 
     void Update()
     {
-        RB.velocity = Run();
-        transform.rotation = Turn();
+        _playerPhisyc.velocity = GetVelocity();
+        transform.rotation = GetTurn();
     }
-    private Vector2 Run()
+    private Vector2 GetVelocity()
     {
         //return new Vector2(-moveJoystick.Horizontal * 5, -moveJoystick.Vertical * 5 );
         return new Vector2(Input.GetAxis("Horizontal")* 5, Input.GetAxis("Vertical") * 5);
     }
-    private Quaternion Turn()
+    private Quaternion GetTurn()
     {
-        if (turnJoystick.Horizontal != 0 && turnJoystick.Vertical != 0 )
+        if (_turnJoystick.Horizontal != 0 && _turnJoystick.Vertical != 0 )
         {
-            angle = Mathf.Atan2(turnJoystick.Horizontal, -turnJoystick.Vertical) * Mathf.Rad2Deg;
+            _angle = Mathf.Atan2(_turnJoystick.Horizontal, -_turnJoystick.Vertical) * Mathf.Rad2Deg;
         }
-        Quaternion rotation = Quaternion.AngleAxis(angle , Vector3.forward);
+        Quaternion rotation = Quaternion.AngleAxis(_angle , Vector3.forward);
         return Quaternion.Slerp(transform.rotation, rotation, 5 * Time.deltaTime);
     }
 }
