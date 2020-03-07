@@ -693,7 +693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303859817}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1596098, y: 2.2024655, z: 0}
+  m_LocalPosition: {x: 3.82, y: 0.49, z: 0}
   m_LocalScale: {x: 1.8465, y: 1.8465, z: 1.8465}
   m_Children:
   - {fileID: 1965968091}
@@ -795,7 +795,7 @@ FrictionJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303859817}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 1965968088}
@@ -2876,10 +2876,9 @@ GameObject:
   - component: {fileID: 1562463140}
   - component: {fileID: 1562463139}
   - component: {fileID: 1562463141}
-  - component: {fileID: 1562463145}
   - component: {fileID: 1562463142}
-  - component: {fileID: 1562463143}
   - component: {fileID: 1562463144}
+  - component: {fileID: 1562463143}
   m_Layer: 0
   m_Name: Bond
   m_TagString: Untagged
@@ -3000,15 +2999,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1562463138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5357eba2fe9e1c74ba04656f84d41327, type: 3}
+  m_Script: {fileID: 11500000, guid: 01807100bca1ef54dbd1f4f11830e666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PistolSprite: {fileID: -4956261934596375690, guid: 6cd4f0f2d557266408cdade420545f80,
-    type: 3}
-  TakeGun: 0
-  DefaultPlayerSprite: {fileID: -9081356737006692701, guid: 6cd4f0f2d557266408cdade420545f80,
-    type: 3}
   _gun: {fileID: 0}
+  TakeGun: 0
+  TypeOfGun: 
 --- !u!114 &1562463144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3018,22 +3014,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1562463138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5abb810c897284f46a31d0b3c72725f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5357eba2fe9e1c74ba04656f84d41327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 0}
---- !u!114 &1562463145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562463138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a54a628674115d4aa654cee3c46a611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  DefaultSprite: {fileID: -6209642928517194676, guid: e1c7a0f780ee9bb408bced86c03d2176,
+    type: 3}
+  GunSprite: {fileID: -4956261934596375690, guid: 6cd4f0f2d557266408cdade420545f80,
+    type: 3}
 --- !u!1 &1604121326
 GameObject:
   m_ObjectHideFlags: 0
@@ -3551,7 +3538,7 @@ MonoBehaviour:
   Shoot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1562463144}
+      - m_Target: {fileID: 0}
         m_MethodName: InstantiateBullet
         m_Mode: 1
         m_Arguments:
@@ -4053,6 +4040,7 @@ GameObject:
   - component: {fileID: 1965968089}
   - component: {fileID: 1965968088}
   - component: {fileID: 1965968092}
+  - component: {fileID: 1965968087}
   m_Layer: 0
   m_Name: "\u0421\u0430\u043C\u0430 \u0434\u0432\u0435\u0440\u044C"
   m_TagString: Untagged
@@ -4060,6 +4048,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!231 &1965968087
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965968086}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: -0.6600002, y: 0.000000010878427}
+  m_ConnectedAnchor: {x: 1.3992381, y: 0.49184653}
+  m_AutoConfigureDistance: 0
+  m_Distance: 0.005
+  m_DampingRatio: 1
+  m_Frequency: 1
 --- !u!50 &1965968088
 Rigidbody2D:
   serializedVersion: 4
@@ -4072,10 +4080,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 73fb51cf34cb468428f2320e040b8a96, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -4181,21 +4189,21 @@ HingeJoint2D:
   m_GameObject: {fileID: 1965968086}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 1
+  m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 303859819}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0.66, y: 0}
-  m_ConnectedAnchor: {x: 0.009000029, y: 0.0010000718}
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0.65, y: 0}
+  m_ConnectedAnchor: {x: -0.0010000281, y: 0.0009999959}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 1
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 30
-    m_UpperAngle: -30
+    m_LowerAngle: -119.02393
+    m_UpperAngle: 124.6082
 --- !u!1 &1972449636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4422,7 +4430,7 @@ MonoBehaviour:
   Drop:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1562463143}
+      - m_Target: {fileID: 0}
         m_MethodName: DropGun
         m_Mode: 1
         m_Arguments:
