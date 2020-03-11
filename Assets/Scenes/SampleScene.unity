@@ -548,6 +548,7 @@ RectTransform:
   - {fileID: 1445697897}
   - {fileID: 1993665697}
   - {fileID: 1760723053}
+  - {fileID: 1974431113}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -915,6 +916,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &325109436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6448638094704342494, guid: 324a133da7d241b49bfc36e27e5c459c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6761000452001970004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &325121353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db1c3569c97dc47be37ff4d4282f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletCount: 0
+  TakeGunCount: 0
 --- !u!1 &584389236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,7 +2324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329915027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.014, y: 0.618, z: 0}
+  m_LocalPosition: {x: 0.014, y: 0.754, z: 0}
   m_LocalScale: {x: 0.60769325, y: 0.60769325, z: 0.60769325}
   m_Children: []
   m_Father: {fileID: 1562463140}
@@ -2652,7 +2661,12 @@ PrefabInstance:
     - target: {fileID: 4609849155710617364, guid: bf360d510811d044fbe42c8065ac00a3,
         type: 3}
       propertyPath: m_BodyType
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609849155710617364, guid: bf360d510811d044fbe42c8065ac00a3,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7870422687209583072, guid: bf360d510811d044fbe42c8065ac00a3,
         type: 3}
@@ -3002,9 +3016,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01807100bca1ef54dbd1f4f11830e666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gun: {fileID: 0}
+  TempGun: {fileID: 0}
   TakeGun: 0
   TypeOfGun: 
+  StoreValue: 0
+  BulletNumber: 0
 --- !u!114 &1562463144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3019,8 +3035,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultSprite: {fileID: -6209642928517194676, guid: e1c7a0f780ee9bb408bced86c03d2176,
     type: 3}
-  GunSprite: {fileID: -4956261934596375690, guid: 6cd4f0f2d557266408cdade420545f80,
+  PistolSprite: {fileID: -4956261934596375690, guid: 6cd4f0f2d557266408cdade420545f80,
     type: 3}
+  Bullet: {fileID: 325109436}
+  GunStoreValue: 0
 --- !u!1 &1604121326
 GameObject:
   m_ObjectHideFlags: 0
@@ -3535,21 +3553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonClick: 0
-  Shoot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: InstantiateBullet
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   ClickNumber: 0
+  BulletDirection: {x: 0, y: 0}
 --- !u!58 &1760723055
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3809,6 +3814,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db1c3569c97dc47be37ff4d4282f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletCount: 0
+  TakeGunCount: 0
 --- !u!1 &1942970795
 GameObject:
   m_ObjectHideFlags: 0
@@ -4313,6 +4320,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1974431112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1974431113}
+  - component: {fileID: 1974431115}
+  - component: {fileID: 1974431114}
+  m_Layer: 5
+  m_Name: NumberOfBulletsText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1974431113
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974431112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 203562024}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.040000003, y: 0.8186667}
+  m_AnchorMax: {x: 0.17232436, y: 0.9548334}
+  m_AnchoredPosition: {x: -0.100097656, y: 5.9000244}
+  m_SizeDelta: {x: -12.399994, y: 7.100006}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1974431114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974431112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 155
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '0
+
+'
+--- !u!222 &1974431115
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974431112}
+  m_CullTransparentMesh: 0
 --- !u!1 &1993665694
 GameObject:
   m_ObjectHideFlags: 0
@@ -4430,7 +4516,7 @@ MonoBehaviour:
   Drop:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1562463143}
         m_MethodName: DropGun
         m_Mode: 1
         m_Arguments:
