@@ -1568,9 +1568,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DumpingSpeed: 5
-  FrameDistance: {x: 1, y: 1, z: 0}
+  FrameDistance: {x: 1, y: 0.5, z: 0}
   Player: {fileID: 1562463138}
+  DirectionPoint: {fileID: 1329915027}
   DumpingForce: 2
+  ShakeTime: 0.5
+  Noize: 15
+  ShakeMagnitude: 0.5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
