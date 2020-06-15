@@ -7,6 +7,7 @@ TagManager:
   - PistolGun
   - ShotGun
   - Opstate
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Opstate
   - Other
   - Door
-  - 
+  - Glass
   - 
   - 
   - 
@@ -43,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 2676012225
     locked: 0
