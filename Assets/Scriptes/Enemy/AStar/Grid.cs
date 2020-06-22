@@ -28,14 +28,14 @@ public class Grid<TgridObject>
             for (int y = 0; y < _array.GetLength(1); y++)
             {
 
-                TextMeshArray[x,y] = GetTextMesh(_array[x,y].ToString(), new Vector3 (CellSize, CellSize) * 0.5f + GetPosition(new Vector3(x, y, 0)), 5, Color.white,TextAnchor.MiddleCenter, 1);
-                Debug.DrawLine(GetPosition( new Vector3(x, y, 0)), GetPosition(new Vector3(x, y+1, 0)), Color.white, 100f);
-                Debug.DrawLine(GetPosition(new Vector3(x, y, 0)), GetPosition(new Vector3(x+1, y, 0)), Color.white, 100f);
+                TextMeshArray[x,y] = GetTextMesh(_array[x,y].ToString(), new Vector3 (CellSize, CellSize) * 0.5f + GetWorldPosition(new Vector3(x, y, 0)), 5, Color.white,TextAnchor.MiddleCenter, 1);
+                Debug.DrawLine(GetWorldPosition( new Vector3(x, y, 0)), GetWorldPosition(new Vector3(x, y+1, 0)), Color.white, 100f);
+                Debug.DrawLine(GetWorldPosition(new Vector3(x, y, 0)), GetWorldPosition(new Vector3(x+1, y, 0)), Color.white, 100f);
             }
         }
 
-        Debug.DrawLine(GetPosition(new Vector3(0, Height)), GetPosition(new Vector3(Width, Height)), Color.white, 100f);
-        Debug.DrawLine( GetPosition(new Vector3(Width, 0)), GetPosition(new Vector3(Width, Height)), Color.white, 100f);
+        Debug.DrawLine(GetWorldPosition(new Vector3(0, Height)), GetWorldPosition(new Vector3(Width, Height)), Color.white, 100f);
+        Debug.DrawLine( GetWorldPosition(new Vector3(Width, 0)), GetWorldPosition(new Vector3(Width, Height)), Color.white, 100f);
 
     }
     public void SetTextMeshFontSize(int size)
@@ -45,9 +45,13 @@ public class Grid<TgridObject>
             mesh.fontSize = size;
         }
     }
-    private Vector3 GetPosition(Vector3 vector3 )
+    private Vector3 GetWorldPosition(Vector3 position )
     {
-        return vector3 * CellSize + OriginPosition;
+        return position * CellSize + OriginPosition;
+    }
+    public Vector3 GetWorldPosition(int x, int y)
+    {
+        return new Vector3(x, y) * CellSize + OriginPosition;
     }
 
     private void SetGridObjet(int x, int y, TgridObject value)
