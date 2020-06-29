@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7870422687209583072}
   - component: {fileID: 7870422687209583075}
   - component: {fileID: 8832550867198139225}
+  - component: {fileID: 8966822720961358355}
   - component: {fileID: 4609849155710617364}
   - component: {fileID: 3185415883193571798}
   m_Layer: 8
@@ -99,6 +100,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletCount: 0
   TakeGunCount: 0
+--- !u!114 &8966822720961358355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870422687209583077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23989ce119c45b045b50bf67c7d745ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletNumbers: 0
+  WeaponType: {fileID: 0}
+  Bullet: {fileID: 0}
+  _type: 0
 --- !u!50 &4609849155710617364
 Rigidbody2D:
   serializedVersion: 4

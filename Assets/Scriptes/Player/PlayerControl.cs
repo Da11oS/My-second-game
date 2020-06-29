@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour
 {
     public float Speed;
     public float TurnSpeed;
+    public GameObject Instance;
     // Start is called before the first frame update
     private Joystick _moveJoystick;
     private Joystick _turnJoystick;
@@ -18,6 +19,7 @@ public class PlayerControl : MonoBehaviour
         _moveJoystick = GameObject.Find("Fixed Joystick(Move)").GetComponent<Joystick>();
         _turnJoystick = GameObject.Find("Fixed Joystick(Turn)").GetComponent<Joystick>();
         _playerLegs = GameObject.Find("Legs");
+        Instance = gameObject;
     }
     void Start()
     {

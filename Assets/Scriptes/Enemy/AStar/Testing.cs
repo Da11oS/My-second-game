@@ -21,37 +21,15 @@ public class Testing : MonoBehaviour
     }
     void Start()
     {
-        //startX = 0;
-        //startY = 0;
-        //endX = 0;
-        //endY = 0;
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
     private void Update()
     {
-        //    //if (Input.GetMouseButtonDown(0))
-        //    //{
-        //    //    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    //    path[0].grid.TextMeshArray[startX, startY].color = Color.white;
-        //    //    Pathfinding.GetGrid().GetXY(mousePosition, out startX, out startY);
-
-        //    //}
-        //    //if (Input.GetMouseButtonDown(1))
-        //    //{
-        //    //    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    //    path[0].grid.TextMeshArray[endX, endY].color = Color.white;
-        //    //    Pathfinding.GetGrid().GetXY(mousePosition, out endX, out endY);
-        //    //}
         if (Input.GetMouseButtonDown(2))
         {
             SetIsUnwalkable(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
         }
-        //    //path = Pathfinding.FindPath((int)startX, (int)startY, (int)endX, (int)endY);
-        //    //DrawWay(path);
-        //    path[0].grid.TextMeshArray[startX, startY].color = Color.green;
-        //    path[0].grid.TextMeshArray[endX, endY].color = Color.red;
-
+        
     }
 
     public void SetIsUnwalkable(Vector3 position)

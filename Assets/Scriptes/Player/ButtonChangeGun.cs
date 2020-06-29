@@ -5,28 +5,31 @@ using UnityEngine.Events;
 
 public class ButtonChangeGun : MonoBehaviour
 {
-    public Sprite DefaultPlayerSprite;
-    public GameObject Pistol;
-    public UnityEvent  Drop;
-    public bool PushButtonDropGun;
+    public static bool OnClick;
+    delegate void Change();
 
     private GameObject _player;
-    private GameObject _gun;
+    private PlayerWeapons _playerWeapons;
+    private Change Drop;
     private void Start()
     {
-            _player = GameObject.Find("Bond");
+            _playerWeapons = FindObjectOfType<PlayerWeapons>();
+            _player = _playerWeapons.gameObject;
+            Drop =  _player.GetComponent<PlayerWeapons>().DropWeapon;
+            OnClick = false;
     }
     public void OnMouseDown()
     {
-        if (_player.GetComponent<ChangeGun>().TakeGun)
+        if (_playerWeapons.CurrentWeapon != null)
         {
-            Drop.Invoke();
-            _player.GetComponent<ChangeGun>().TakeGun = false;
+            Drop();
         }
-        PushButtonDropGun = true;
+            _playerWeapons.SetWeaponParameters();
+        OnClick = true;
     }
+
     public void OnMouseUp()
     {
-        PushButtonDropGun = false;
+        OnClick = false;
     }
 }
